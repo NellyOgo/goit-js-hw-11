@@ -1,4 +1,6 @@
 const API_KEY = '38183263-7b55f24cf30c776edf1c7da27';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
@@ -18,6 +20,13 @@ function handleFormSubmit(event) {
   clearGallery();
   searchImages();
 }
+const lightbox = new SimpleLightbox('.gallery a', {
+    captionsData: 'alt',
+    captionPosition: 'bottom',
+    captionDelay: 250,
+    animationSlide: false,
+    history: false
+  });
 
 async function searchImages() {
   const url = `https://pixabay.com/api/?key=${API_KEY}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${currentPage}&per_page=40`;
@@ -55,15 +64,7 @@ function renderImages(images) {
 
   gallery.appendChild(fragment);
 
-  const lightbox = new SimpleLightbox('.gallery a', {
-    captionsData: 'alt',
-    captionPosition: 'bottom',
-    captionDelay: 250,
-    animationSlide: false,
-    history: false
-  });
-
-  lightbox.refresh();
+   lightbox.refresh(); 
 }
 
 function createImageCard(image) {
