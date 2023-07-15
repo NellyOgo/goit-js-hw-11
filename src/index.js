@@ -4,6 +4,7 @@ import "simplelightbox/dist/simple-lightbox.min.css";
 import axios from 'axios';
 import Notiflix from 'notiflix';
 
+
 const form = document.getElementById('search-form');
 const gallery = document.querySelector('.gallery');
 const loadMoreBtn = document.querySelector('.load-more');
@@ -136,9 +137,19 @@ function scrollToNextGroup() {
   });
 }
 
+// function showNotification(message) {
+//   Notiflix.Notify.info(message);
+//   setTimeout(() => {
+//     Notiflix.Notify.remove('info');
+//   }, 4000);
+// }
+
 function showNotification(message) {
   Notiflix.Notify.info(message);
   setTimeout(() => {
-    Notiflix.Notify.remove();
+    const notificationElement = document.querySelector('.notiflix-notification-info');
+    if (notificationElement) {
+      notificationElement.style.display = 'none';
+    }
   }, 4000);
 }
